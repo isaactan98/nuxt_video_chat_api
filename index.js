@@ -37,14 +37,14 @@ app.post('/get_uuid', (req, res) => {
 io.on("connection", (socket) => {
 
     socket.on("join-room", (roomId, userId, userName) => {
-        console.log("user id : " + userId);
-        console.log("user id : " + roomId);
+        console.log("user connected : " + userId);
         socket.join(roomId);
         socket.to(roomId).emit("user-connected", userId);
         socket.on("message", (message) => {
             io.to(roomId).emit("createMessage", message, userName);
         });
         socket.on('disconnect', () => {
+            console.log("user disconnected : " + userId);
             socket.to(roomId).emit('user-disconnected', userId)
         })
     });
