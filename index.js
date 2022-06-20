@@ -28,6 +28,10 @@ app.get("/", (req, res) => {
     res.redirect(`/${uuidv4()}`);
 });
 
+app.post("/loading", (req, res) => {
+    res.status(200).send("Good")
+})
+
 var uuid_value = null;
 app.post('/get_uuid', (req, res) => {
     uuid_value = uuidv4()
