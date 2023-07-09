@@ -41,7 +41,7 @@ app.post('/get_uuid', (req, res) => {
 io.on("connection", (socket) => {
 
     socket.on("join-room", (roomId, userId, userName) => {
-        console.log("user connected : " + userName);
+        console.log("user connected : " + userName, "room ID: " + roomId, " peer ID: " + userId);
         socket.join(roomId);
         socket.to(roomId).emit("user-connected", userId, userName);
         socket.on("message", (message) => {
